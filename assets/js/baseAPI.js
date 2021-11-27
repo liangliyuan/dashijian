@@ -4,5 +4,12 @@
 $(function() {
     $.ajaxPrefilter(function(options) {
         options.url = "http://www.liulongbin.top:3008" + options.url
+
+        //统一为有权限的headrs请求头
+        if (options.url.indexOf('/my/') !== -1) {
+            options.headers = {
+                Authorization: localStorage.getItem("token")
+            }
+        }
     })
 })
